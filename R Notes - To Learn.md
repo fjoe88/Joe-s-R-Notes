@@ -1,4 +1,4 @@
-# To be understood later
+# Things to learn
 
 * `!!!`
 

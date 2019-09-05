@@ -1,6 +1,8 @@
 # Modeling Tips
 
-* model and return Rsq for each group
+## Code Snippets
+
+### Return Model Rsq for Each Group
 
 ```R
 surveys %>%
@@ -19,3 +21,11 @@ surveys %>%
 ##        Sigmodon    Spermophilus
 ##     0.038990704     1.000000000
 ```
+
+## Workflows
+
+### Feature Selection
+
+1. Removing features with low variance¶
+
+* [Feature Selection Approach in R](http://r-statistics.co/Variable-Selection-and-Importance-With-R.html)
