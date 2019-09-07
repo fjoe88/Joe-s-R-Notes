@@ -11,7 +11,8 @@
 ### datapasta
 >RStudio addins and R functions that make copy-pasting vectors and tables to text painless.
 
-* [Official Document](https://github.com/tidyverse/glue)
+### Hmisc and rms
+
 
 ## Tidy Data (Hadleyverse)
 
@@ -40,6 +41,10 @@
 >...a set of tools for improved output from linear regression models, designed keeping in mind beginner/intermediate R users.
 
 ## Visualization
+
+### tmaptools
+
+> tmaptools::palette_explorer() for interactive palette customization.
 
 ### ggrepel
 
