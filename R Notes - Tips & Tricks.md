@@ -101,7 +101,24 @@ substr("abcdef", 2, 4)
 Levels: X.1 Y.1 Z.1 X.2 Y.2 Z.2
 ```
 
+* **unlist**
+
+```R
+unique(unlist(list)) #return unique values out of a unpacked list
+```
+
+* **browser**
+>A call to browser can be included in the body of a function. When reached, this causes a pause in the execution of the current expression and allows access to the R interpreter.
+
+* **on.exit**
+
+```R
+on.exit(dbDisconnect(conn))
+```
+
 ### Others
+
+* `all`, `any`
 
 * `cut`
 
@@ -240,4 +257,4 @@ my_func <- function(df, x, y){
 my_func(mtcars, mpg, cyl) # so much more convinient
 ```
 
-## data.table
+## Data.table

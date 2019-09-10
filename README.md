@@ -4,11 +4,11 @@
 
 ## [Tips & Tricks](https://github.com/fjoe88/Joe-s-R-Notes/blob/master/R%20Notes%20-%20Tips%20%26%20Tricks.md)
 
-* Base R
+* Base R ( *Classy!* )
 
-* Tidyverse
+* Tidyverse ( *Hadleyverse* )
 
-* Data.table
+* Data.table ( *Use more!* )
 
 ## [Useful Functions](https://github.com/fjoe88/Joe-s-R-Notes/blob/master/R%20Notes%20-%20Useful%20Functions.md)
 
