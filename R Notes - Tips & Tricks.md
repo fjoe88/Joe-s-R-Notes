@@ -1,6 +1,6 @@
 # Tips and Tricks
 
-## Using base R functions is classy
+## Base R
 
 > Using base R function that does the job and does it well and efficient, thats classy! (just like my golden retriever, Ollie)
 
@@ -12,7 +12,7 @@
 
 * [**Vocabulary** from 'Advanced R'](http://adv-r.had.co.nz/Vocabulary.html)
 
-### Functions that I dont think I'm (ab)using enough
+### Base R functions that I'm not (ab)using enough
 
 * **sample**
 
@@ -103,19 +103,26 @@ Levels: X.1 Y.1 Z.1 X.2 Y.2 Z.2
 
 ### Others
 
-* **cut**
+* `cut`
 
-* **duplicated**, **union**, **intersect**, **setdiff**
+* `duplicated`, `union`, `intersect`, `setdiff`
 
-* **rep**, **rep_len** (rep_len - faster, simplified version of rep(c(1,2), 3))
+* `rep`, `rep_len` ( rep_len - faster, simplified version of rep(c(1,2), 3) )
 
-* **seq**, **seq_along**, **seq_len**
+* `seq`, `seq_along`, `seq_len`
 
-* **rev**
+* `rev`
 
-* **apply**, **lapply**, **sapply**, **mapply**, **vapply**, **tapply**
+* `apply`, `lapply`, `sapply`, `mapply`, `vapply`, `tapply`
 
-## Working in Tidyverse (aka Hadleyverse)
+## Working in Tidyverse
+
+* `stringr::word`
+
+```R
+word(sentence, -1)
+```
+
 
 ### Transformation
 
@@ -211,26 +218,22 @@ group_by_if(iris, is.factor, as.character)
 Old way of (me) doing it to circumvent the delayed evluation by ggplot2 function...
 
 ```R
-require(rlang)
-require(tidyverse)
-
 my_func <- function(df, x, y){
 
-  #x, y must be "string" format
   ggplot(data = df, aes(x = df[[x]], y = df[[y]])) +
     geom_point()
 }
 
+#x, y must be passed in as strings
 my_func(mtcars, x = "mpg", y = "cyl")
 ```
 
 Now with rlang 0.4.0+, use {{var}} instead! Learnt from Sharons video on ['How to make your own ggplot2 functions'](https://www.youtube.com/watch?v=9v9-EpTuwk0)
 
 ```R
-...
 my_func <- function(df, x, y){
-  #x, y must be "string" format
-  ggplot(data = df, aes(x = {{x}}, y = {{y}}) +
+
+  ggplot(data = df, aes(x = {{x}}, y = {{y}})) +
     geom_point()
 }
 

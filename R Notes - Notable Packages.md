@@ -14,13 +14,14 @@
 ### Hmisc and rms
 
 
-## Tidy Data (Hadleyverse)
+## Tidy Data
 
 ### padr
 
 >...aims to make light work of preparing time series data by offering the two main functions thicken and pad. A small example before we get into detail. Say I want to make a line plot of my daily expenses at the coffee place. The data for a few days might look like.
 
 * [Padr Intro](https://edwinth.github.io/blog/padr-intro/)
+
 ## Modeling
 
 ### caret
