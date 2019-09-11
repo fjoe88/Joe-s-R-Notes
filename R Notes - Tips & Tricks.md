@@ -202,7 +202,7 @@ df$ID seq.int(nrow(df))
 list <- mtcars %>% group_split(cyl)
 ```
 
-* group_split combined with purrr::map_df
+* `group_split` combined with `purrr::map_df`
 
 ```R
 # Another example:
@@ -237,7 +237,7 @@ mtcars %>%
   group_split(cyl) %>% ...
 ```
 
-* `bind_rows`, `bind_cols`: `dplyr`'s answer to do.call(cbind, list)
+* `bind_rows`, `bind_cols`: dplyr's answer to `do.call(cbind, list)`
 
 ```R
 mtcars %>%
