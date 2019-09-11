@@ -47,6 +47,17 @@
 
 > tmaptools::palette_explorer() for interactive palette customization.
 
+### ggpointdensity
+>...individual points are colored by the number of neighboring points. This allows you to see the overall distribution, as well as individual points.
+
 ### ggrepel
 
 >ggrepel provides geoms for ggplot2 to repel overlapping text labels
+
+## Fun ones
+
+### tvthemes
+
+![](https://i.imgur.com/URy88Fl.png)
+
+![](https://github.com/Ryo-N7/tvthemes/raw/master/man/figures/README-Simpsons-1.png)

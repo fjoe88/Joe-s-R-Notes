@@ -1,6 +1,6 @@
 # Tips and Tricks
 
-## Base R
+## 1. Base R
 
 > Using base R function that does the job and does it well and efficient, thats classy! (just like my golden retriever, Ollie)
 
@@ -41,7 +41,7 @@ subset(iris, Sepal.Length == 5.1, select = c(Species))
 ```
 
 * **dimnames**
-*Produces a length 2 list with all the row names and all the column names.*
+Produces a length 2 list with all the row names and all the column names.
 
 * **setequal**
 ```R
@@ -68,6 +68,13 @@ substr("abcdef", 2, 4)
 [1] 5
 > pmax(c(1, 2, 3), c(4, 5, 2)) # compares vectors element-wise
 [1] 4 5 3
+```
+
+* **seq**, **seq_along**, **seq_len**, **seq_int**
+
+```R
+# Create row index column
+df$ID <- seq.int(nrow(df))
 ```
 
 * **&**, **&&**
@@ -126,13 +133,38 @@ on.exit(dbDisconnect(conn))
 
 * `rep`, `rep_len` ( rep_len - faster, simplified version of rep(c(1,2), 3) )
 
-* `seq`, `seq_along`, `seq_len`
-
 * `rev`
 
 * `apply`, `lapply`, `sapply`, `mapply`, `vapply`, `tapply`
 
-## Working in Tidyverse
+## 2. How-to's
+
+* How to use a data.frame as lookup table 
+  * Think of `dictionary` in Python
+```R
+> dict
+               dog       color
+1 Golden Retriever        Gold
+2    Border Collie Black&White
+3           Poodle       Brown
+> dog
+                  dog
+1       Golden Doodle
+2    Golden Retriever
+3 Australian Shepherd
+4       Border Collie
+
+> dog$color <- dict$color[match(dog$dog, dict$dog)]
+> dog
+                  dog       color
+1       Golden Doodle        <NA>
+2    Golden Retriever        Gold
+3 Australian Shepherd        <NA>
+4       Border Collie Black&White
+```
+
+
+## 3. Working in `tidyverse`
 
 * `stringr::word`
 
@@ -140,9 +172,28 @@ on.exit(dbDisconnect(conn))
 word(sentence, -1)
 ```
 
+### String manipulation
+
+* `str_split(..., simplify = TRUE)`
+```R
+> ollie <- c("eats_a_lot",
++            "sleep_a_lot",
++            "play_a_lot")
+
+> str_split(ollie, "_", simplify = TRUE)[,1] # Output matrix instead of list
+[1] "eats"  "sleep" "play" 
+```
 
 ### Transformation
 
+* use `row_name_to_col` to create row index column
+
+```R
+df$ID <- rownames_to_column(.data, var = "rowname")
+
+# another way
+df$ID seq.int(nrow(df))
+```
 * `nest(-group)` is equivalent of `group_by(group) %>% nest()`
 * `dplyr::group_split` split list of tibbles by group
 
@@ -257,4 +308,8 @@ my_func <- function(df, x, y){
 my_func(mtcars, mpg, cyl) # so much more convinient
 ```
 
-## Data.table
+## 4. Working in `data.table`
+
+## 5. R Studio
+
+`Ctrl + Shift + P` Re-Run Previous
