@@ -136,6 +136,12 @@ on.exit(dbDisconnect(conn))
 * `rev`
 
 * `apply`, `lapply`, `sapply`, `mapply`, `vapply`, `tapply`
+  * apply: 1: row-wise; 2: col-wise
+  * tapply: similar to `dplyr::group_by() %>% f()`
+
+* `stack`, `unstack`
+
+* `by` (similar to `dplyr::group_by`)
 
 ## 2. How-to's
 
@@ -185,6 +191,55 @@ word(sentence, -1)
 ```
 
 ### Transformation
+
+* use `between()`, `near()`
+
+```R
+df%>%filter(between(column, 10, 20))
+# another way
+df%>%filter(near(column, 15, tol = 5)) # equivalent
+
+# Conviniently used for filter +-3sigma
+df%>%filter(near(column, 10, tol = 3 * sd(column)))
+```
+
+* **filter_all**, **filter_at**, **filter_if**
+
+```R
+> mtcars %>% # return row that has any value 275.8
++   filter_all(any_vars(. == 275.8))
+   mpg cyl  disp  hp drat   wt qsec vs am gear carb
+1 16.4   8 275.8 180 3.07 4.07 17.4  0  0    3    3
+2 17.3   8 275.8 180 3.07 3.73 17.6  0  0    3    3
+3 15.2   8 275.8 180 3.07 3.78 18.0  0  0    3    3
+
+> mtcars %>% # return rows that all are above 0.9
++   filter_all(all_vars(. > 0.9))
+   mpg cyl  disp  hp drat    wt  qsec vs am gear carb
+1 22.8   4 108.0  93 3.85 2.320 18.61  1  1    4    1
+2 32.4   4  78.7  66 4.08 2.200 19.47  1  1    4    1
+3 30.4   4  75.7  52 4.93 1.615 18.52  1  1    4    2
+
+> mtcars %>% # filter by any column contains "mpg"
++   filter_at(vars(contains("mpg")), any_vars(. > 30))
+   mpg cyl disp  hp drat    wt  qsec vs am gear carb
+1 32.4   4 78.7  66 4.08 2.200 19.47  1  1    4    1
+2 30.4   4 75.7  52 4.93 1.615 18.52  1  1    4    2
+3 33.9   4 71.1  65 4.22 1.835 19.90  1  1    4    1
+4 30.4   4 95.1 113 3.77 1.513 16.90  1  1    5    2
+
+# filter_if: find numeric columns and filter if all are non-na
+> df
+  foo bar    dog
+1   3   1 golden
+2   2  NA    lab
+3  NA   1 doodle
+4   1   3 poodle
+> df %>% filter_if(is.numeric, all_vars(!is.na(.)))
+  foo bar    dog
+1   3   1 golden
+2   1   3 poodle
+```
 
 * use `row_name_to_col` to create row index column
 
