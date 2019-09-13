@@ -203,7 +203,11 @@ df%>%filter(near(column, 15, tol = 5)) # equivalent
 df%>%filter(near(column, 10, tol = 3 * sd(column)))
 ```
 
-* **filter_all**, **filter_at**, **filter_if**
+* `select_all`, `select_if`, `select_at` (...all, ...if, ...at)
+
+>The select_all/if/at functions require that a function is passed as an argument. If you have to add any negation or arguments, you will have to wrap your function inside `funs()` or add a tilde before to remake it a function.
+
+* **filter_all**, **filter_at**, **filter_if** combined with `any_var`, `all_var`
 
 ```R
 > mtcars %>% # return row that has any value 275.8
@@ -239,6 +243,17 @@ df%>%filter(near(column, 10, tol = 3 * sd(column)))
   foo bar    dog
 1   3   1 golden
 2   1   3 poodle
+```
+
+* **case_when**
+```R
+# from Suzan Baert
+checkout %>%
+  mutate(age_category = case_when(
+    age < 12 ~ "Children",
+    age < 18 ~ "Teenager",
+    TRUE ~ "Adult"
+  ))
 ```
 
 * use `row_name_to_col` to create row index column
@@ -292,6 +307,15 @@ mtcars %>%
   group_split(cyl) %>% ...
 ```
 
+* avoid re-type column names: predefine groups
+
+```R
+attributes <- c("name", "sex", "age", "height", "hobby")
+
+df %>%
+  select(!!attributes) # or: select(one_of(attributes))
+```
+
 * `bind_rows`, `bind_cols`: dplyr's answer to `do.call(cbind, list)`
 
 ```R
@@ -334,6 +358,23 @@ group_by_all(mtcars, as.factor)
 group_by_if(iris, is.factor, as.character)
 ```
 
+* `arrange` together with `-`
+
+```R
+mtcars %>% arrange(-mpg)
+```
+
+* `str_subset`
+
+```R
+# unlist a list of vectors, pick unique values, subset by regex(begin with digits)
+foo <- str_subset(unique(unlist(bar), "^[[:digit:]]))
+```
+
+### Others
+
+**slice**
+
 ### Visualization
 
 * Use rlang::{{}} for tidyeval variables inside functions!
@@ -365,6 +406,23 @@ my_func(mtcars, mpg, cyl) # so much more convinient
 
 ## 4. Working in `data.table`
 
+* `data.table` preferred especially in (Suzan Baert's "Need for Speed" satRday talk)
+  * import
+  * export
+  * counting
+  * filtering
+  * join
+
+* `data.table` combined with `tidyverse`? why not (again from Suzan Baert's 'Need for Speed' satRday talk)
+
+```R
+library_checkouts[str_detect(title, "Leviathan(Wakes"), unique(Title)]
+```
+
 ## 5. R Studio
 
 `Ctrl + Shift + P` Re-Run Previous
+
+`Ctrl + 1/2/3/4` Switch Panes
+
+`Ctrl + Shift + 1/2/3/4` Maximize Panes
