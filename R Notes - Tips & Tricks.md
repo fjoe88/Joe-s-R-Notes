@@ -6,11 +6,13 @@
 
 ![Ollie_classy](./IMAGES/ollie_classy.jpg)
 
-### Great references
+### Wonderful references
 
 * [base R package **Official Documentation**](https://stat.ethz.ch/R-manual/R-devel/library/base/html/00Index.html)
 
 * [**Vocabulary** from 'Advanced R'](http://adv-r.had.co.nz/Vocabulary.html)
+
+* [R Cookbook, 2nd Edition](https://rc2e.com/index.html)
 
 ### Base R functions that I'm not (ab)using enough
 
@@ -31,6 +33,24 @@
 ind <- sample(2, nrow(df), replace=TRUE, prob=c(0.3, 0.7))
 train <- df[ind==1, ]
 test <- df[ind==2, ]
+```
+
+* us **as.list** to convert vector to list, not **list**
+```R
+> num <- c(1, 2, 3)
+> list(num) # not what I want
+[[1]]
+[1] 1 2 3
+
+> as.list(num) # what I wanted
+[[1]]
+[1] 1
+
+[[2]]
+[1] 2
+
+[[3]]
+[1] 3
 ```
 
 * The good old **head**, **tail**, **subset**
@@ -373,7 +393,9 @@ foo <- str_subset(unique(unlist(bar), "^[[:digit:]]))
 
 ### Others
 
-**slice**
+* **slice**
+
+* purrr::safely / quietly / possibly
 
 ### Visualization
 
@@ -420,6 +442,10 @@ library_checkouts[str_detect(title, "Leviathan(Wakes"), unique(Title)]
 ```
 
 ## 5. R Studio
+
+`Ctrl + Shift + S` Source Active Files
+
+`Ctrl + Alt + Enter` Send to Terminal
 
 `Ctrl + Shift + P` Re-Run Previous
 
