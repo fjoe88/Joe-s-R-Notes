@@ -53,7 +53,9 @@ test <- df[ind==2, ]
 [1] 3
 ```
 
-* The good old **head**, **tail**, **subset**
+* get in the habit of always specify `drop = FALSE` with (subsetting) **data.frames**, if output need not be simplified to **vector**
+
+* **head**, **tail**, **subset**
 
 ```R
 head(mtcars, 10) #tail
@@ -82,7 +84,7 @@ substr("abcdef", 2, 4)
 [1] 8
 ```
 
-* **pmax**
+* **pmax** (not limited to only 1 pair)
 ```R
 > max(c(1, 2, 3), c(4, 5, 2))
 [1] 5
@@ -390,12 +392,20 @@ mtcars %>% arrange(-mpg)
 # unlist a list of vectors, pick unique values, subset by regex(begin with digits)
 foo <- str_subset(unique(unlist(bar), "^[[:digit:]]))
 ```
+* use `purrr::transpose` combined with lapply for easy row-wise operations (when need to iterate over a dataframe)
+  * on 'row-oriented worklows'
+    - [Jenny Bryan slide deck](https://speakerdeck.com/jennybc/row-oriented-workflows-in-r-with-the-tidyverse)
+> Gist:
+> embrace **data.frame** esp. the **tibble**
+> embrace **lists** as variables esp. in a tibble **list-columns**, may come from nesting
+> embrace **purrr:map()** & friends
+
 
 ### Others
 
 * **slice**
 
-* purrr::safely / quietly / possibly
+* **purrr::safely / quietly / possibly**
 
 ### Visualization
 
