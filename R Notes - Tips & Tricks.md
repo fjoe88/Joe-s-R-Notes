@@ -145,6 +145,8 @@ unique(unlist(list)) #return unique values out of a unpacked list
 on.exit(dbDisconnect(conn))
 ```
 
+* use `col_types = cols()` to supress messages in `readr::read_csv`
+
 ### Others
 
 * `all`, `any`
